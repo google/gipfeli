@@ -349,7 +349,7 @@ bool Gipfeli::GetUncompressedLengthStream(
   *result = 0;
   for (int i = bytes_used - 1; i >= 0; --i) {
     *result <<= 8;
-    *result |= *(ip + i);
+    *result |= static_cast<unsigned char>(*(ip + i));
   }
 
   // Uncompressed string can have at most (2 GB - 1).
