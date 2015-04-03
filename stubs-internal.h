@@ -43,7 +43,7 @@
 // When building with C++11 toolchains, just use the language support
 // for explicitly deleted methods. This doesn't delete the move constructor,
 // so objects can still be stored in move-aware containers, like std::vector.
-#if LANG_CXX11
+#ifdef LANG_CXX11
 #define DISALLOW_COPY_AND_ASSIGN(TypeName) \
   TypeName(const TypeName&) = delete;      \
   void operator=(const TypeName&) = delete
