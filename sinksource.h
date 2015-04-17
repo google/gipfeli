@@ -43,9 +43,9 @@ class MemBlock {
 
  protected:
   // For use by subclasses
-  MemBlock(void* data, size_t length) {
-    data_ = orig_data_ = data;
-    length_ = orig_length_ = length;
+  MemBlock(void* mem, size_t len) {
+    data_ = orig_data_ = mem;
+    length_ = orig_length_ = len;
   }
 
  private:
@@ -61,8 +61,8 @@ class MemBlock {
 // char[]', and it will be delete[]'ed when this object is destroyed.
 class NewedMemBlock: public MemBlock {
  public:
-  NewedMemBlock(char* space, size_t length)
-      : MemBlock(space, length) {
+  NewedMemBlock(char* space, size_t len)
+      : MemBlock(space, len) {
       assert(orig_data() != NULL);
   }
   virtual ~NewedMemBlock() {
