@@ -40,7 +40,7 @@ static inline int MultiBlockFindMatchLength(const uint8* s1,
   // time until we find a 64-bit block that doesn't match; then we find
   // the first non-matching bit and use that to calculate the total
   // length of the match.
-  while (PREDICT_TRUE(s2 <= s2_limit - 8)) {
+  while (PREDICT_TRUE(s2 <= s2_limit - 8 && s1 <= s1_limit - 8)) {
     if (PREDICT_FALSE(UNALIGNED_LOAD64(s2) == UNALIGNED_LOAD64(s1))) {
       s2 += 8;
       s1 += 8;
