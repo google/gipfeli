@@ -277,7 +277,7 @@ size_t Gipfeli::CompressStream(
     }
 
     bytes_written += output_size;
-    prev_block = input_block;
+    std::swap(prev_block, input_block);
     input_block = block_reader.GetNextBlock();
   }
 
