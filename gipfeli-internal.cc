@@ -236,9 +236,10 @@ size_t Gipfeli::CompressStream(
   uint32 content_size = 0;
   uint32 commands_size = 0;
 
-  const char* prev_block = NULL;
+  string prev_block;
   while (input_block.size()) {
-    lz77->CompressFragment(input_block.data(), input_block.size(), prev_block,
+    lz77->CompressFragment(input_block.data(), input_block.size(),
+                           prev_block.empty() ? NULL : prev_block.data(),
                            &content, &content_size, &commands, &commands_size);
 
     // We add 64 bytes for potential entropy overhead.
@@ -282,7 +283,7 @@ size_t Gipfeli::CompressStream(
     }
 
     bytes_written += output_size;
-    prev_block = input_block.data();
+    std::swap(prev_block, input_block);
     input_block = block_reader.GetNextBlock();
   }
 
