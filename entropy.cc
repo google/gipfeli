@@ -2,6 +2,7 @@
 
 #include "entropy.h"
 
+#include <algorithm>
 #include <string.h>
 #include <string>
 
