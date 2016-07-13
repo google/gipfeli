@@ -288,7 +288,7 @@ inline char* string_as_array(std::string* str) {
 //   s1[0,n-1] == s2[0,n-1]
 //   and n <= (s2_limit - s2).
 //
-// Separate implementation for x86_64, for speed.
+// Separate implementation for x86_64 and little endian PPC, for speed.
 #if (defined(__GNUC__) && (defined(ARCH_K8) \
                            || (defined(__ppc64__) && defined(_LITTLE_ENDIAN))))
 static inline int FindMatchLength(const uint8* s1,
